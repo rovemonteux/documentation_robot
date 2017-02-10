@@ -26,9 +26,13 @@ import java.io.StringWriter;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import cf.monteux.documenter.java.JarProcessor;
+import cf.monteux.documenter.java.objects.ObjectCollection;
+import cf.monteux.exception.ExceptionLogger;
+
 public class Documenter {
 
-	static final Logger logger;
+	public static final Logger logger;
 	
 	static {
         logger = Logger.getLogger(Documenter.class.getName());
@@ -53,21 +57,22 @@ public class Documenter {
 			documenter.process(args[0]);
 		}
 		catch (Exception e) {
-			logger.severe("Error: "+e.getLocalizedMessage());
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			logger.severe(sw.toString().trim());
-			sw = null;
+			ExceptionLogger.log(e);
 			usage();
 		}
 	}
 	
 	public static void usage() {
-		logger.info("Usage: Documenter <class file name>");
+		logger.info("Usage: Documenter <jar file name>");
 	}
 	
-	public void process(String className) {
-		
+	public void process(String jarFileName) {
+		ObjectCollection objects = new ObjectCollection();
+		try {
+			JarProcessor jarProcessor = new JarProcessor(jarFileName, objects);
+		} catch (IOException e) {
+			ExceptionLogger.log(e);
+		}
 	}
 
 }
