@@ -21,11 +21,19 @@
 package cf.monteux.documenter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.logging.LogManager;
-
+import java.util.logging.Logger;
 
 public class Documenter {
 
+	static final Logger logger;
+	
+	static {
+        logger = Logger.getLogger(Documenter.class.getName());
+    }
+	
 	public static void main(String[] args) {
 		if (System.getProperty("java.util.logging.config.file") == null) {
             try {
@@ -37,7 +45,7 @@ public class Documenter {
             }
             catch (NullPointerException e) {
             	final Exception ex = e;
-            	System.err.println("The default logging properties file, /resources/logging.properties, is missing");
+            	System.err.println("The default logging properties file, /log/logging.properties, is missing");
             }
         }
 		Documenter documenter = new Documenter();
@@ -45,12 +53,17 @@ public class Documenter {
 			documenter.process(args[0]);
 		}
 		catch (Exception e) {
+			logger.severe("Error: "+e.getLocalizedMessage());
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			logger.severe(sw.toString().trim());
+			sw = null;
 			usage();
 		}
 	}
 	
 	public static void usage() {
-
+		logger.info("Usage: Documenter <class file name>");
 	}
 	
 	public void process(String className) {
