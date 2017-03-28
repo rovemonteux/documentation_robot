@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>cf.monteux</groupId>
-  <artifactId>documentation_robot</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Documentation Robot</name>
-  <description>Java package for helping automating the documentation of software projects.</description>
- <build>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cf.monteux</groupId>
+    <artifactId>documentation_robot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Documentation Robot</name>
+    <description>Java package for helping automating the documentation of software projects.</description>
+    <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -96,15 +96,15 @@
                     </execution>
                 </executions>
             </plugin>
-            </plugins>
-             <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <includes>
-          <include>**/*</include>
-        </includes>
-      </resource>
-    </resources>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
     <reporting>
         <plugins>
@@ -166,6 +166,19 @@
         <name>Rove Monteux</name>
         <url>http://monteux.cf/</url>
     </organization>
+    <scm>
+        <url>https://github.com/rovemonteux/documentation_robot</url>
+        <connection>scm:git:git://github.com/rovemonteux/documentation_robot.git</connection>
+        <developerConnection>scm:git:git@github.com:rovemonteux/documentation_robot.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <email>rmonteux@centrum.cz</email>
+            <name>Rove Monteux</name>
+            <url>https://github.com/rovemonteux</url>
+            <id>rovemonteux</id>
+        </developer>
+    </developers>
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>dd/MM/yyyy HH:mm:ss</maven.build.timestamp.format>
